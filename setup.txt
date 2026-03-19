@@ -1,0 +1,21 @@
+SetUp Kafka in AWS [2026]
+
+1. open cmd from local and connect direct to the folder where the .pem key is stored
+2. connect with EC2 cluster using the SSH command available in the connect section of created instance
+3. install Java and Kafka on EC2
+---sudo apt install openjdk-17-jdk -y
+--- wget https://archive.apache.org/dist/kafka/3.6.0/kafka_2.13-3.6.0.tgz
+---tar -xzf kafka_2.13-3.6.0.tgz
+---set KAFKA_HEAP_OPTS=-Xmx512M -Xms256M (optional to increase RAM)
+
+
+4. Create MSK provisional cluster and set IAM role and policy
+
+5. Create kafka topic :
+$ bin/kafka-topics.sh --create --bootstrap-server <bootstrap server> --command-config /home/ec2-user/kafka_2.13-4.2.0/bin/
+client.properties --replication-factor 3 --partitions 1 --topic test
+
+6.Create Kafka Producer
+bin/kafka-console-producer.sh --bootstrap-server localhost:9092 --topic test
+
+7.Create Kafka Consumer
